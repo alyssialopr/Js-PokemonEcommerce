@@ -6,6 +6,6 @@ CSS
 Javascript Vanilla
 
 ## Contient
-# Page d'Accueil
-# Page Produit 
-# Page Panier
+### Page d'Accueil
+### Page Produit 
+### Page Panier

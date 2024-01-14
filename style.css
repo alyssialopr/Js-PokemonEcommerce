@@ -10,6 +10,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    min-height: 100vh;
 }
 
 nav {
@@ -136,7 +137,7 @@ nav {
     margin-bottom: 10px;
 }
 
-#addtocart {
+#addToCartButton {
     padding: 10px;
     align-items: center;
     background-color: #FFCC00;
@@ -152,12 +153,38 @@ nav {
     cursor: pointer;
 }
 
-#addtocart:hover {
+#addToCartButton:hover {
     background-color: #0075BE;
     color: #FFCC00;
     transition: 0.3s;
 }
 
-#addtocart:active {
+#addToCartButton:active {
+    transform: scale(0.85);
+}
+
+#clear-cart-button {
+    padding: 10px;
+    align-items: center;
+    background-color: #ffffff;
+    border: none;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#clear-cart-button:hover {
+    background-color: #0075BE;
+    color: #FFCC00;
+    transition: 0.3s;
+}
+
+#clear-cart-button:active {
     transform: scale(0.85);
 }

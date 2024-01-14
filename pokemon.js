@@ -1,5 +1,3 @@
-// Description: Script JS pour la page pokemon.html
-
 // afficher le pokemon cliqué sur la page pokemon.html
 
 function getPokemonDetailsFromUrl() {
@@ -58,27 +56,12 @@ function displayPokemonDetails() {
 displayPokemonDetails();
 
 
-// quand on clique sur le bouton ajouter au panier, le pokemon est ajouté au panier
-// et le panier est affiché sur la page panier.html
 
-function addToCart(pokemonName) {
-  const existingCart = localStorage.getItem("cart");
+const addToCartButton = document.getElementById("addToCartButton");
 
-  if (!existingCart) {
-    // Si le panier n'existe pas encore dans le localStorage
-    const newCart = [];
-    newCart.push(pokemonName);
-    localStorage.setItem("cart", JSON.stringify(newCart));
-  } else {
-    // Ajouter le Pokémon au panier existant
-    const parsedCart = JSON.parse(existingCart);
-    parsedCart.push(pokemonName);
-    localStorage.setItem("cart", JSON.stringify(parsedCart));
-  }
-
-  // Vous pouvez également afficher un message de confirmation ici
-  alert(`Le Pokémon ${pokemonName} a été ajouté au panier !`);
-}
+addToCartButton.addEventListener("click", () => {
+  alert(`Le Pokémon a été ajouté au panier !`);
+});
 
 
 

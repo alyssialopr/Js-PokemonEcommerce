@@ -1,48 +1,49 @@
-// // faire un panier avec les pokemons choisis avec le bouton ajouter au panier
+function addToCart() {
+  // Récupérer les détails du Pokémon actuellement affichés
+  const name = document.querySelector(".pokemonDetails-name").textContent;
+  const imageUrl = document.querySelector(".pokemonDetails-image").src;
 
-// // afficher le panier sur la page panier.html
+  // Récupérer le panier depuis le stockage local
+  const cartItems = localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const cartContainer = document.getElementById("cart-container");
+  // Ajouter les détails du Pokémon au panier
+  cartItems.push({ name, imageUrl });
 
-//   // Récupérer le panier depuis le stockage local
-//   const cartItems = localStorage.getItem("cart");
-
-//   if (cartItems) {
-//     const parsedCart = JSON.parse(cartItems);
-
-//     // Afficher chaque élément du panier dans votre interface utilisateur
-//     parsedCart.forEach((pokemonName) => {
-//       const cartItem = document.createElement("div");
-//       cartItem.textContent = `Pokémon : ${pokemonName}`;
-//       cartContainer.appendChild(cartItem);
-//     });
-//   } else {
-//     // Afficher un message indiquant que le panier est vide
-//     const emptyCartMessage = document.createElement("p");
-//     emptyCartMessage.textContent = "Le panier est vide.";
-//     cartContainer.appendChild(emptyCartMessage);
-//   }
-// });
-
+  // Mettre à jour le panier dans le stockage local
+  localStorage.setItem("cart", JSON.stringify(cartItems));
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const cartContainer = document.getElementById("cart-container");
-  const cartItems = localStorage.getItem("cart");
 
-  if (cartItems) {
-    const parsedCart = JSON.parse(cartItems);
+  // Récupérer le panier depuis le stockage local
+  const cartItems = localStorage.getItem("cart")
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
 
-    parsedCart.forEach((pokemonDetails) => {
-      const cartItem = document.createElement("div");
-      cartItem.innerHTML = `
-        <h2 class="pokemonDetails-name">${pokemonDetails.name}</h2>
-      `;
-      cartContainer.appendChild(cartItem);
-    });
-  } else {
+  // Afficher chaque élément du panier dans l'interface utilisateur
+  cartItems.forEach((pokemon) => {
+    const cartItemContainer = document.createElement("div");
+    const nameElement = document.createElement("p");
+    const imageElement = document.createElement("img");
+
+    nameElement.textContent = `Pokémon : ${pokemon.name}`;
+    imageElement.src = pokemon.imageUrl;
+    imageElement.alt = pokemon.name;
+
+    cartItemContainer.appendChild(nameElement);
+    cartItemContainer.appendChild(imageElement);
+    cartContainer.appendChild(cartItemContainer);
+  });
+
+  const clearCartButton = document.getElementById("clear-cart-button");
+  clearCartButton.addEventListener("click", () => {
+    localStorage.removeItem("cart");
+    cartContainer.innerHTML = "";
     const emptyCartMessage = document.createElement("p");
     emptyCartMessage.textContent = "Le panier est vide.";
     cartContainer.appendChild(emptyCartMessage);
-  }
+  });
 });
